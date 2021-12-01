@@ -15,14 +15,3 @@ function copyComponent() {
     window.wfCopyJsonData = data;
     document.execCommand("copy");
 }
-
-//How to read data
-window.addEventListener(
-    "paste",
-    (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        window.pasteData = e.clipboardData.getData("application/json");
-    },
-    true
-);
