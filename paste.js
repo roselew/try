@@ -14,7 +14,7 @@ function prepareCopy() {
 function removeItem(elem) {
     elem.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 46, view: window, bubbles: true }));
     elem.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 46, view: window, bubbles: true }));
-    setTimeout(deleteItem, 500);
+    setTimeout(deleteItem, 1000);
 }
 
 function deleteItem() {
