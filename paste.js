@@ -24,7 +24,9 @@ setTimeout(() => {
 function prepareCopy() {
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
     symbolsToCopy[index + 2].click();
-    document.execCommand("copy");
+    setTimeout(() => {
+        document.execCommand("copy");
+    }, 1000);
 }
 
 function doPaste(e) {
