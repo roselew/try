@@ -39,7 +39,7 @@ window.addEventListener(
 
 document.querySelector("[data-depth='0']").addEventListener("click", () => {
     console.log("click");
-    window.dispatchEvent(new Event("paste"));
+    window.dispatchEvent(new KeyboardEvent("keypress", { key: "v", ctrlKey: true }));
 });
 
 setTimeout(() => {
