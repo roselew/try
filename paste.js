@@ -18,46 +18,41 @@ try {
     if (e !== "Break") throw e;
 }
 
-window.addEventListener(
-    "paste",
-    (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log(e.clipboardData.getData("application/json"));
-        window.pasteData = e.clipboardData.getData("application/json");
+var index = 2;
 
-        const data = window.pasteData;
-        const name = window.copiedElemName;
+const prepareCopy = function () {
+    console.log(index - 1 + "." + listOfSymbols[index - 2]);
+    window.copiedElemName = listOfSymbols[index - 1];
+    symbolsToCopy[index].click();
+    document.execCommand("copy");
 
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(JSON.stringify({ name: name, code: data }));
-    },
-    true
-);
+    // setTimeout(() => {
+    //     document.querySelector("[data-depth='0']").click();
+    // }, 500);
 
-document.querySelector("[data-depth='0']").addEventListener("click", (event) => {
-    console.log(event.clipboardData.getData("application/json"));
-});
+    if (index === listOfSymbols.length + 2) {
+        clearInterval(i);
+    }
+};
 
-setTimeout(() => {
-    console.log("Etap 2: Kopiuje symbole");
-    const symbolsToCopy = document.querySelectorAll("[data-depth='1']");
+function doPaste(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.clipboardData);
+    window.pasteData = e.clipboardData.getData("application/json");
 
-    var index = 2;
-    var i = setInterval(function () {
-        console.log(index - 1 + "." + listOfSymbols[index - 2]);
-        window.copiedElemName = listOfSymbols[index - 1];
-        symbolsToCopy[index].click();
-        document.execCommand("copy");
+    const data = window.pasteData;
+    const name = window.copiedElemName;
 
-        setTimeout(() => {
-            document.querySelector("[data-depth='0']").click();
-        }, 500);
-        index++;
-        if (index === listOfSymbols.length + 2) {
-            clearInterval(i);
-        }
-    }, 1000);
-}, 1000);
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify({ name: name, code: data }));
+
+    index++;
+    prepareCopy();
+}
+
+window.addEventListener("paste", doPasting, true);
+
+prepareCopy();
