@@ -36,9 +36,6 @@ function doPaste(e) {
     const data = e.clipboardData.getData("application/json");
     const name = listOfSymbols[index];
 
-    console.log(name);
-    console.log(data);
-
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
     xhttp.setRequestHeader("Content-type", "application/json");
@@ -48,6 +45,7 @@ function doPaste(e) {
     if (index == listOfSymbols.length) {
         console.log("KONIEC");
         window.removeEventListener("paste", doPaste, true);
+    } else {
+        prepareCopy();
     }
-    prepareCopy();
 }
