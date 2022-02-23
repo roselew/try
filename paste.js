@@ -39,8 +39,9 @@ window.addEventListener(
 
 document.querySelector("[data-depth='0']").addEventListener("click", () => {
     console.log("click");
-    const clipboardItem = await navigator.clipboard.read();
-    console.log(clipboardItem);
+    navigator.clipboard.read().then((data) => {
+        console.log(data);
+    });
 });
 
 setTimeout(() => {
