@@ -18,7 +18,7 @@ function removeItem(elem) {
 }
 
 function deleteItem() {
-    const item = document.querySelectorAll("[data-depth='1']")[4];
+    const item = document.querySelectorAll("[data-depth='1']")[5];
     if (item) {
         item.addEventListener(
             "click",
@@ -28,6 +28,9 @@ function deleteItem() {
             true
         );
         item.click();
+    } else {
+        document.querySelectorAll("[data-depth='0']").click();
+        document.querySelector(".button.top.symbols").click();
     }
 }
 
