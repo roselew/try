@@ -39,7 +39,8 @@ window.addEventListener(
 
 document.querySelector("[data-depth='0']").addEventListener("click", () => {
     console.log("click");
-    window.dispatchEvent(new KeyboardEvent("keypress", { key: "v", ctrlKey: true }));
+    const clipboardItem = await navigator.clipboard.read();
+    console.log(clipboardItem);
 });
 
 setTimeout(() => {
