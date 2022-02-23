@@ -19,14 +19,15 @@ try {
 }
 
 var index = 2;
+var symbolsToCopy = [];
 
 setTimeout(() => {
-    const symbolsToCopy = document.querySelector("[data-depth='1']");
+    symbolsToCopy = document.querySelectorAll("[data-depth='1']");
     window.addEventListener("paste", doPaste, true);
     prepareCopy();
 }, 1000);
 
-const prepareCopy = function () {
+function prepareCopy() {
     console.log(index - 1 + "." + listOfSymbols[index - 2]);
     symbolsToCopy[index].click();
     document.execCommand("copy");
@@ -38,7 +39,7 @@ const prepareCopy = function () {
     if (index === listOfSymbols.length + 2) {
         clearInterval(i);
     }
-};
+}
 
 function doPaste(e) {
     e.preventDefault();
