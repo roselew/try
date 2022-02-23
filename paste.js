@@ -18,9 +18,13 @@ try {
     if (e !== "Break") throw e;
 }
 
-const symbolsToCopy = document.querySelector("[data-depth='1']");
-
 var index = 2;
+
+setTimeout(() => {
+    const symbolsToCopy = document.querySelector("[data-depth='1']");
+    window.addEventListener("paste", doPaste, true);
+    prepareCopy();
+}, 1000);
 
 const prepareCopy = function () {
     console.log(index - 1 + "." + listOfSymbols[index - 2]);
@@ -53,7 +57,3 @@ function doPaste(e) {
     index++;
     prepareCopy();
 }
-
-window.addEventListener("paste", doPaste, true);
-
-prepareCopy();
