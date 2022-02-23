@@ -6,9 +6,9 @@ try {
     document
         .querySelectorAll("[data-automation-id='unnamed-symbol-name']")
         .forEach((elem, index) => {
-            // if (index >= 5) {
-            //     throw "Break";
-            // }
+            if (index < window.minIndex || index > window.maxIndex) {
+                throw "Break";
+            }
             const name = elem.innerText;
             console.log(index + 1 + "." + name);
             listOfSymbols.push(name);
