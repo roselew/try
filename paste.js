@@ -19,15 +19,14 @@ setTimeout(() => {
     symbolsToCopy = document.querySelectorAll("[data-depth='1']");
     window.addEventListener("paste", doPaste, true);
     prepareCopy();
-}, 1000);
+}, 2000);
 
 function prepareCopy() {
-    console.log(symbolsToCopy[2]);
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
     symbolsToCopy[index + 2].click();
     setTimeout(() => {
         document.execCommand("copy");
-    }, 2000);
+    }, 1000);
 }
 
 function doPaste(e) {
@@ -36,6 +35,9 @@ function doPaste(e) {
 
     const data = e.clipboardData.getData("application/json");
     const name = listOfSymbols[index];
+
+    console.log(name);
+    console.log(data);
 
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
