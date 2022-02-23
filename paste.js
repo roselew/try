@@ -1,5 +1,5 @@
 //How to read data
-if (typeof listOfSymbols !== "undefined") {
+if (typeof listOfSymbols === "undefined") {
     const listOfSymbols = [];
 } else {
     listOfSymbols = [];
@@ -16,13 +16,13 @@ document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach(
     }
 });
 
-if (typeof index !== "undefined") {
+if (typeof index === "undefined") {
     var index = 0;
 } else {
     index = 0;
 }
 
-if (typeof symbolsToCopy !== "undefined") {
+if (typeof symbolsToCopy === "undefined") {
     var symbolsToCopy = [];
 } else {
     symbolsToCopy = [];
