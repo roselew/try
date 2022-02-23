@@ -37,11 +37,8 @@ window.addEventListener(
     true
 );
 
-document.querySelector("[data-depth='0']").addEventListener("click", () => {
-    console.log("click");
-    navigator.clipboard.read().then((data) => {
-        console.log(data);
-    });
+document.querySelector("[data-depth='0']").addEventListener("click", (event) => {
+    console.log(event.clipboardData.getData("application/json"));
 });
 
 setTimeout(() => {
