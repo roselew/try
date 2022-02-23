@@ -18,7 +18,7 @@ function removeItem(elem) {
 }
 
 function deleteItem() {
-    const item = document.querySelectorAll("[data-depth='1']")[3];
+    const item = document.querySelectorAll("[data-depth='1']")[4];
     if (item) {
         item.addEventListener(
             "click",
@@ -74,5 +74,5 @@ function readData(minItem, maxItem) {
         symbolsToCopy = document.querySelectorAll("[data-depth='1']");
         prepareCopy();
         window.addEventListener("paste", doPaste, true);
-    }, 10000);
+    }, 5000);
 }
