@@ -2,23 +2,17 @@
 
 const listOfSymbols = [];
 console.log("Etap 1: Pobieram listę symboli");
-try {
-    document
-        .querySelectorAll("[data-automation-id='unnamed-symbol-name']")
-        .forEach((elem, index) => {
-            if (index < window.minIndex || index > window.maxIndex) {
-                throw "Break";
-            }
-            const name = elem.innerText;
-            console.log(index + 1 + "." + name);
-            listOfSymbols.push(name);
-            elem.click();
-        });
-} catch (e) {
-    if (e !== "Break") throw e;
-}
 
-var index = 2;
+document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
+    if (i >= window.minIndex && i <= window.maxIndex) {
+        const name = elem.innerText;
+        console.log(i + 1 + "." + name);
+        listOfSymbols.push(name);
+        elem.click();
+    }
+});
+
+var index = 0;
 var symbolsToCopy = [];
 
 setTimeout(() => {
@@ -28,13 +22,9 @@ setTimeout(() => {
 }, 1000);
 
 function prepareCopy() {
-    console.log(index - 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index - 2]);
-    symbolsToCopy[index].click();
+    console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
+    symbolsToCopy[index + 2].click();
     document.execCommand("copy");
-
-    if (index === listOfSymbols.length + 2) {
-        clearInterval(i);
-    }
 }
 
 function doPaste(e) {
@@ -42,7 +32,7 @@ function doPaste(e) {
     e.stopPropagation();
 
     const data = e.clipboardData.getData("application/json");
-    const name = listOfSymbols[index - 1];
+    const name = listOfSymbols[index];
 
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
@@ -50,5 +40,9 @@ function doPaste(e) {
     xhttp.send(JSON.stringify({ name: name, code: data }));
 
     index++;
+    if (index == listOfSymbols.length) {
+        console.log("KONIEC");
+        window.removeEventListener("paste", doPaste, true);
+    }
     prepareCopy();
 }
