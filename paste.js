@@ -18,6 +18,7 @@ function removeItem(elem) {
 }
 
 function deleteItem() {
+    document.querySelector("[data-depth='0']").click();
     const item = document.querySelectorAll("[data-depth='1']")[5];
     if (item) {
         item.addEventListener(
@@ -29,8 +30,9 @@ function deleteItem() {
         );
         item.click();
     } else {
-        document.querySelectorAll("[data-depth='0']").click();
+        document.querySelector("[data-depth='0']").click();
         document.querySelector(".button.top.symbols").click();
+        readData(window.maxCounter + 1, window.maxCounter + 11);
     }
 }
 
@@ -58,6 +60,7 @@ function doPaste(e) {
 
 function readData(minItem, maxItem) {
     listOfSymbols = [];
+    window.maxCounter = maxItem;
 
     console.log("Etap 1: Pobieram listę symboli");
 
@@ -79,3 +82,5 @@ function readData(minItem, maxItem) {
         window.addEventListener("paste", doPaste, true);
     }, 5000);
 }
+
+readData(0, 10);
