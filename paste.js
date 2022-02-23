@@ -22,11 +22,12 @@ setTimeout(() => {
 }, 1000);
 
 function prepareCopy() {
+    console.log(symbolsToCopy[2]);
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
     symbolsToCopy[index + 2].click();
     setTimeout(() => {
         document.execCommand("copy");
-    }, 1000);
+    }, 2000);
 }
 
 function doPaste(e) {
