@@ -1,27 +1,7 @@
 //How to read data
-function readData(minItem, maxItem) {
-    var listOfSymbols = [];
-
-    console.log("Etap 1: Pobieram listę symboli");
-
-    document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
-        if (i >= minItem && i <= maxItem) {
-            const name = elem.innerText;
-            console.log(i + 1 + "." + name);
-            listOfSymbols.push(name);
-            elem.click();
-        }
-    });
-
-    var index = 0;
-    var symbolsToCopy = [];
-
-    setTimeout(() => {
-        symbolsToCopy = document.querySelectorAll("[data-depth='1']");
-        prepareCopy();
-        window.addEventListener("paste", doPaste, true);
-    }, 10000);
-}
+var index = 0;
+var listOfSymbols = [];
+var symbolsToCopy = [];
 
 function prepareCopy() {
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
@@ -71,4 +51,28 @@ function doPaste(e) {
     } else {
         prepareCopy();
     }
+}
+
+function readData(minItem, maxItem) {
+    listOfSymbols = [];
+
+    console.log("Etap 1: Pobieram listę symboli");
+
+    document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
+        if (i >= minItem && i <= maxItem) {
+            const name = elem.innerText;
+            console.log(i + 1 + "." + name);
+            listOfSymbols.push(name);
+            elem.click();
+        }
+    });
+
+    index = 0;
+    symbolsToCopy = [];
+
+    setTimeout(() => {
+        symbolsToCopy = document.querySelectorAll("[data-depth='1']");
+        prepareCopy();
+        window.addEventListener("paste", doPaste, true);
+    }, 10000);
 }
