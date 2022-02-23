@@ -1,6 +1,10 @@
 //How to read data
+if (typeof listOfSymbols !== "undefined") {
+    const listOfSymbols = [];
+} else {
+    listOfSymbols = [];
+}
 
-const listOfSymbols = [];
 console.log("Etap 1: Pobieram listę symboli");
 
 document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
@@ -12,8 +16,17 @@ document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach(
     }
 });
 
-var index = 0;
-var symbolsToCopy = [];
+if (typeof index !== "undefined") {
+    var index = 0;
+} else {
+    index = 0;
+}
+
+if (typeof symbolsToCopy !== "undefined") {
+    var symbolsToCopy = [];
+} else {
+    symbolsToCopy = [];
+}
 
 setTimeout(() => {
     symbolsToCopy = document.querySelectorAll("[data-depth='1']");
