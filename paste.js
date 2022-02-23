@@ -18,11 +18,12 @@ try {
     if (e !== "Break") throw e;
 }
 
+const symbolsToCopy = document.querySelector("[data-depth='1']");
+
 var index = 2;
 
 const prepareCopy = function () {
     console.log(index - 1 + "." + listOfSymbols[index - 2]);
-    window.copiedElemName = listOfSymbols[index - 1];
     symbolsToCopy[index].click();
     document.execCommand("copy");
 
@@ -42,7 +43,7 @@ function doPaste(e) {
     window.pasteData = e.clipboardData.getData("application/json");
 
     const data = window.pasteData;
-    const name = window.copiedElemName;
+    const name = listOfSymbols[index - 1];
 
     const xhttp = new XMLHttpRequest();
     xhttp.open("POST", "https://hook.eu1.make.com/vqm0i798jft3juwx1ytpr7abaz6f5r1n", true);
