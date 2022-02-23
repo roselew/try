@@ -28,13 +28,9 @@ setTimeout(() => {
 }, 1000);
 
 function prepareCopy() {
-    console.log(index - 1 + "." + listOfSymbols[index - 2]);
+    console.log(index - 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index - 2]);
     symbolsToCopy[index].click();
     document.execCommand("copy");
-
-    // setTimeout(() => {
-    //     document.querySelector("[data-depth='0']").click();
-    // }, 500);
 
     if (index === listOfSymbols.length + 2) {
         clearInterval(i);
@@ -44,10 +40,8 @@ function prepareCopy() {
 function doPaste(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log(e.clipboardData);
-    window.pasteData = e.clipboardData.getData("application/json");
 
-    const data = window.pasteData;
+    const data = e.clipboardData.getData("application/json");
     const name = listOfSymbols[index - 1];
 
     const xhttp = new XMLHttpRequest();
