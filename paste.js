@@ -29,6 +29,26 @@ function prepareCopy() {
     }, 500);
 }
 
+function removeItem(elem) {
+    elem.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 46, view: window, bubbles: true }));
+    elem.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 46, view: window, bubbles: true }));
+    setTimeout(deleteItem, 500);
+}
+
+function deleteItem() {
+    const item = document.querySelectorAll("[data-depth='1']")[3];
+    if (item) {
+        item.addEventListener(
+            "click",
+            () => {
+                removeItem(item);
+            },
+            true
+        );
+        item.click();
+    }
+}
+
 function doPaste(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -45,6 +65,7 @@ function doPaste(e) {
     if (index == listOfSymbols.length) {
         console.log("KONIEC");
         window.removeEventListener("paste", doPaste, true);
+        deleteItem();
     } else {
         prepareCopy();
     }
