@@ -1,25 +1,27 @@
 //How to read data
-var listOfSymbols = [];
+function readData(minItem, maxItem) {
+    var listOfSymbols = [];
 
-console.log("Etap 1: Pobieram listę symboli");
+    console.log("Etap 1: Pobieram listę symboli");
 
-document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
-    if (i >= window.minIndex && i <= window.maxIndex) {
-        const name = elem.innerText;
-        console.log(i + 1 + "." + name);
-        listOfSymbols.push(name);
-        elem.click();
-    }
-});
+    document.querySelectorAll("[data-automation-id='unnamed-symbol-name']").forEach((elem, i) => {
+        if (i >= minItem && i <= maxItem) {
+            const name = elem.innerText;
+            console.log(i + 1 + "." + name);
+            listOfSymbols.push(name);
+            elem.click();
+        }
+    });
 
-var index = 0;
-var symbolsToCopy = [];
+    var index = 0;
+    var symbolsToCopy = [];
 
-setTimeout(() => {
-    symbolsToCopy = document.querySelectorAll("[data-depth='1']");
-    prepareCopy();
-    window.addEventListener("paste", doPaste, true);
-}, 10000);
+    setTimeout(() => {
+        symbolsToCopy = document.querySelectorAll("[data-depth='1']");
+        prepareCopy();
+        window.addEventListener("paste", doPaste, true);
+    }, 10000);
+}
 
 function prepareCopy() {
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
