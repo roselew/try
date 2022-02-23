@@ -38,10 +38,9 @@ window.addEventListener(
 );
 
 document.querySelector("[data-depth='0']").addEventListener("click", () => {
-    console.log('click');
+    console.log("click");
     window.dispatchEvent(new Event("paste"));
 });
-
 
 setTimeout(() => {
     console.log("Etap 2: Kopiuje symbole");
@@ -62,5 +61,4 @@ setTimeout(() => {
             clearInterval(i);
         }
     }, 1000);
-}, 1000))
-
+}, 1000);
