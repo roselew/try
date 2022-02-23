@@ -35,7 +35,7 @@ function deleteItem() {
             document.querySelector(".button.top.symbols").click();
             readData(window.maxCounter + 1, window.maxCounter + 11);
         }
-    }, 300);
+    }, 1000);
 }
 
 function doPaste(e) {
