@@ -19,21 +19,23 @@ function removeItem(elem) {
 
 function deleteItem() {
     document.querySelector("[data-depth='0']").click();
-    const item = document.querySelectorAll("[data-depth='1']")[5];
-    if (item) {
-        item.addEventListener(
-            "click",
-            () => {
-                removeItem(item);
-            },
-            true
-        );
-        item.click();
-    } else {
-        document.querySelector("[data-depth='0']").click();
-        document.querySelector(".button.top.symbols").click();
-        readData(window.maxCounter + 1, window.maxCounter + 11);
-    }
+    setTimeout(() => {
+        const item = document.querySelectorAll("[data-depth='1']")[5];
+        if (item) {
+            item.addEventListener(
+                "click",
+                () => {
+                    removeItem(item);
+                },
+                true
+            );
+            item.click();
+        } else {
+            document.querySelector("[data-depth='0']").click();
+            document.querySelector(".button.top.symbols").click();
+            readData(window.maxCounter + 1, window.maxCounter + 11);
+        }
+    }, 300);
 }
 
 function doPaste(e) {
