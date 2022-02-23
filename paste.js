@@ -53,6 +53,6 @@ function doPaste(e) {
     prepareCopy();
 }
 
-window.addEventListener("paste", doPasting, true);
+window.addEventListener("paste", doPaste, true);
 
 prepareCopy();
