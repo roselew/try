@@ -14,28 +14,26 @@ function prepareCopy() {
 function removeItem(elem) {
     elem.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 46, view: window, bubbles: true }));
     elem.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 46, view: window, bubbles: true }));
-    setTimeout(deleteItem, 1300);
+    setTimeout(deleteItem, 300);
 }
 
 function deleteItem() {
-    document.querySelector("[data-depth='0']").click();
-    setTimeout(() => {
-        const item = document.querySelectorAll("[data-depth='1']")[5];
-        if (item) {
-            item.addEventListener(
-                "click",
-                () => {
-                    removeItem(item);
-                },
-                true
-            );
-            item.click();
-        } else {
-            document.querySelector("[data-depth='0']").click();
-            document.querySelector(".button.top.symbols").click();
-            readData(window.maxCounter + 1, window.maxCounter + 11);
-        }
-    }, 300);
+    const items = document.querySelectorAll("[data-depth='1']");
+    const item = items[items.length - 1];
+    if (items.length > 4 && item) {
+        item.addEventListener(
+            "click",
+            () => {
+                removeItem(item);
+            },
+            true
+        );
+        item.click();
+    } else {
+        document.querySelector("[data-depth='0']").click();
+        document.querySelector(".button.top.symbols").click();
+        readData(window.maxCounter + 1, window.maxCounter + 11);
+    }
 }
 
 function doPaste(e) {
