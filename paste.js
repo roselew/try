@@ -19,7 +19,7 @@ setTimeout(() => {
     symbolsToCopy = document.querySelectorAll("[data-depth='1']");
     prepareCopy();
     window.addEventListener("paste", doPaste, true);
-}, 2000);
+}, 10000);
 
 function prepareCopy() {
     console.log(index + 1 + "/" + listOfSymbols.length + "." + listOfSymbols[index]);
