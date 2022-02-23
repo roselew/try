@@ -14,7 +14,7 @@ function prepareCopy() {
 function removeItem(elem) {
     elem.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 46, view: window, bubbles: true }));
     elem.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 46, view: window, bubbles: true }));
-    setTimeout(deleteItem, 1000);
+    setTimeout(deleteItem, 1300);
 }
 
 function deleteItem() {
@@ -35,7 +35,7 @@ function deleteItem() {
             document.querySelector(".button.top.symbols").click();
             readData(window.maxCounter + 1, window.maxCounter + 11);
         }
-    }, 1000);
+    }, 300);
 }
 
 function doPaste(e) {
