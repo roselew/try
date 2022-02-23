@@ -32,7 +32,9 @@ function deleteItem() {
     } else {
         document.querySelector("[data-depth='0']").click();
         document.querySelector(".button.top.symbols").click();
-        readData(window.maxCounter + 1, window.maxCounter + 11);
+        setTimeout(() => {
+            readData(window.maxCounter + 1, window.maxCounter + 10);
+        }, 3000);
     }
 }
 
