@@ -82,5 +82,3 @@ function readData(minItem, maxItem) {
         window.addEventListener("paste", doPaste, true);
     }, 5000);
 }
-
-readData(0, 10);
